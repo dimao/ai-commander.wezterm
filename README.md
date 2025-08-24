@@ -7,8 +7,8 @@ A WezTerm plugin that integrates with AI providers (Anthropic Claude and OpenAI 
 - **Command Generation**: Generate multiple bash command options from natural language descriptions
 - **Interactive Selection**: Choose from generated commands using a selection menu
 - **Context-Aware Generation**: Select text in the terminal to provide context for command generation
-- **Prompt History**: Access and reuse previous prompts with `Ctrl+Shift+H`
-- **Quick Command Generation**: Generate commands on-the-fly with `Ctrl+Shift+G`
+- **Prompt History**: Access and reuse previous prompts with `Alt+Shift+H`
+- **Quick Command Generation**: Generate commands on-the-fly with `Alt+Shift+X`
 - **Word Deletion**: Enhanced text editing with `Alt+Backspace` for word deletion
 
 ## Prerequisites
@@ -20,20 +20,14 @@ A WezTerm plugin that integrates with AI providers (Anthropic Claude and OpenAI 
 
 ## Installation
 
-1. Clone or copy the plugin to your WezTerm config directory:
-   ```bash
-   cd ~/.config/wezterm/  # or wherever your .wezterm.lua is located
-   cp -r /path/to/ai-commander.wezterm .
-   ```
-
-2. Update your `.wezterm.lua` configuration to load the plugin:
+1. Add the plugin to your `.wezterm.lua` configuration:
    ```lua
    local wezterm = require 'wezterm'
    local config = wezterm.config_builder()
    local act = wezterm.action
 
    -- Load AI Commander plugin
-   local ai_plugin = require 'ai-commander.wezterm.plugin'
+   local ai_plugin = wezterm.plugin.require("https://github.com/dimao/ai-commander.wezterm")
 
    -- Apply AI Commander configuration with your API key
    ai_plugin.apply_to_config(config, {
@@ -56,14 +50,14 @@ A WezTerm plugin that integrates with AI providers (Anthropic Claude and OpenAI 
      },
      {
        key = 'H',
-       mods = 'CTRL|SHIFT',
+       mods = 'ALT|SHIFT',
        action = wezterm.action_callback(function(window, pane)
          ai_plugin.show_history(window, pane)
        end),
      },
      {
-       key = 'G',
-       mods = 'CTRL|SHIFT', 
+       key = 'X',
+       mods = 'ALT|SHIFT',
        action = wezterm.action_callback(function(window, pane)
          ai_plugin.show_prompt(window, pane)
        end),
@@ -77,8 +71,8 @@ A WezTerm plugin that integrates with AI providers (Anthropic Claude and OpenAI 
 
 The plugin provides the following keybindings (which you need to add to your config):
 
-- **Ctrl+Shift+G**: Generate bash commands from a prompt
-- **Ctrl+Shift+H**: Access prompt history
+- **Alt+Shift+X**: Generate bash commands from a prompt
+- **Alt+Shift+H**: Access prompt history
 - **Alt+Backspace**: Delete word (enhanced text editing)
 
 **Note**: The keybindings are not automatically registered by the plugin. You must add them to your `config.keys` table as shown in the installation example above.
@@ -86,7 +80,7 @@ The plugin provides the following keybindings (which you need to add to your con
 ### Workflow
 
 #### Basic Command Generation
-1. Press `Ctrl+Shift+G` to open the command generation prompt
+1. Press `Alt+Shift+X` to open the command generation prompt
 2. Enter a natural language description of what you want to do (e.g., "find all PDF files in current directory")
 3. The AI will generate 3-5 different bash command options
 4. Select the command you want to use from the interactive menu
@@ -94,7 +88,7 @@ The plugin provides the following keybindings (which you need to add to your con
 
 #### Context-Aware Command Generation
 1. **Select text** in your terminal (drag to highlight text like file paths, error messages, log entries, etc.)
-2. Press `Ctrl+Shift+G` to open the command generation prompt
+2. Press `Alt+Shift+X` to open the command generation prompt
 3. The prompt description will indicate that selected text will be used as context
 4. Enter your command request (e.g., "fix this error" or "process these files")
 5. The AI will generate commands that take the selected text into account
@@ -108,8 +102,8 @@ The plugin provides the following keybindings (which you need to add to your con
 
 ### Prompt History
 
-Access your previous prompts with `Ctrl+Shift+H`:
-1. Press `Ctrl+Shift+H` to see your prompt history
+Access your previous prompts with `Alt+Shift+H`:
+1. Press `Alt+Shift+H` to see your prompt history
 2. Select a previous prompt from the list
 3. The AI will regenerate commands for that prompt
 

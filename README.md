@@ -208,4 +208,4 @@ ai_plugin.apply_to_config(config, {
 
 ## License
 
-This plugin is provided as-is for educational and personal use.
+MIT

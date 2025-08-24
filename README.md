@@ -82,7 +82,7 @@ The plugin provides the following keybindings (which you need to add to your con
 #### Basic Command Generation
 1. Press `Alt+Shift+X` to open the command generation prompt
 2. Enter a natural language description of what you want to do (e.g., "find all PDF files in current directory")
-3. The AI will generate 3-5 different bash command options
+3. The AI will generate multiple bash command options (configurable, default: 5)
 4. Select the command you want to use from the interactive menu
 5. The selected command will be inserted into your terminal
 
@@ -120,6 +120,7 @@ ai_plugin.apply_to_config(config, {
   },
   max_tokens = 4000,  -- Maximum response length
   temperature = 0.1,  -- Response creativity (0.0-1.0)
+  command_count = 5,  -- Number of commands to generate (default: 5)
   history_file = wezterm.home_dir .. '/.wezterm_ai_prompt_history.txt',  -- History file location
   max_history = 100,  -- Maximum number of history items
 })
@@ -165,6 +166,7 @@ ai_plugin.apply_to_config(config, {
 
 - `provider`: Choose between "anthropic" (Claude) or "openai" (GPT)
 - `api_key`: Your API keys for the respective providers
+- `command_count`: Number of commands to generate (default: 5)
 - `max_tokens`, `temperature`: Control AI response behavior
 - `history_file`, `max_history`: Manage prompt history storage
 

@@ -20,6 +20,7 @@ local default_config = {
   },
   max_tokens = 4000,
   temperature = 0.1,
+  command_count = 5,  -- Number of commands to generate (default: 5)
   history_file = wezterm.home_dir .. '/.wezterm_ai_prompt_history.txt',
   max_history = 100,
 }
@@ -188,7 +189,7 @@ end
 local function process_prompt_with_context(prompt, context, window, pane)
   save_prompt_to_history(prompt)
   
-  local api_prompt = "Generate 3-5 different bash command options to: " .. prompt
+  local api_prompt = "Generate " .. config.command_count .. " different bash command options to: " .. prompt
   
   -- Add context if available
   if context and context ~= "" then

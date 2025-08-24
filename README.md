@@ -1,6 +1,6 @@
 # AI Commander for WezTerm
 
-A WezTerm plugin that integrates with AI providers (Anthropic Claude and OpenAI GPT) to generate and select bash commands based on natural language prompts.
+Integrates with AI providers (Anthropic Claude and OpenAI GPT) to generate and select bash commands based on natural language prompts.
 
 ## Features
 

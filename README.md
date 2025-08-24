@@ -2,6 +2,8 @@
 
 Integrates with AI providers (Anthropic Claude and OpenAI GPT) to generate and select bash commands based on natural language prompts.
 
+![Example Usage](./example.gif)
+
 ## Features
 
 - **Command Generation**: Generate multiple bash command options from natural language descriptions
